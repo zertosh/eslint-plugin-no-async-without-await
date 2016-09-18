@@ -1,0 +1,27 @@
+{
+  "name": "eslint-plugin-no-async-without-await",
+  "version": "0.0.0",
+  "description": "Enforce that async functions use await",
+  "keywords": [
+    "async",
+    "async/await",
+    "await",
+    "eslint",
+    "eslint-plugin",
+    "eslintplugin"
+  ],
+  "license": "MIT",
+  "files": [
+    "*.js"
+  ],
+  "author": "Andres Suarez <zertosh@gmail.com>",
+  "repository": "zertosh/eslint-plugin-no-async-without-await",
+  "scripts": {
+    "test": "find test -name '*-test.js' -print0 | xargs -n 1 -0 node"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "babel-eslint": "^6.1.2",
+    "eslint": "^3.5.0"
+  }
+}
