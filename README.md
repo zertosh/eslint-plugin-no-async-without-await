@@ -56,3 +56,7 @@ function f() {
   return someAsyncProcess();
 }
 ```
+
+## Options
+
+* `allowThrow`: Allows `throw` to substitute for `await`. It's often convenient for an `async` function simply throw to return a rejected promise.

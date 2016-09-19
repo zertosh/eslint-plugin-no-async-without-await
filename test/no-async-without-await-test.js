@@ -24,6 +24,33 @@ ruleTester.run('no-async-without-await', require.resolve('../no-async-without-aw
     {code: 'async () => { await x }'},
     {code: 'class C { async m() { await x } }'},
     {code: 'class C { static async m() { await x } }'},
+
+    {code: 'throw x'},
+
+    {
+      code: 'async function f() { throw x }',
+      options: ['allow-throw'],
+    },
+    {
+      code: '(async function f() { throw x })',
+      options: ['allow-throw'],
+    },
+    {
+      code: '(async function() { throw x })',
+      options: ['allow-throw'],
+    },
+    {
+      code: 'async () => { throw x }',
+      options: ['allow-throw'],
+    },
+    {
+      code: 'class C { async m() { throw x } }',
+      options: ['allow-throw'],
+    },
+    {
+      code: 'class C { static async m() { throw x } }',
+      options: ['allow-throw'],
+    },
   ],
   invalid: [
     {
@@ -127,6 +154,32 @@ ruleTester.run('no-async-without-await', require.resolve('../no-async-without-aw
     {
       code: 'class C { static async m() { await x; async () => {} } }',
       errors: [{type: 'ArrowFunctionExpression', message: MESSAGE}],
+    },
+
+
+    {
+      code: 'async function f() { throw x }',
+      errors: [{type: 'FunctionDeclaration', message: MESSAGE}],
+    },
+    {
+      code: '(async function f() { throw x })',
+      errors: [{type: 'FunctionExpression', message: MESSAGE}],
+    },
+    {
+      code: '(async function() { throw x })',
+      errors: [{type: 'FunctionExpression', message: MESSAGE}],
+    },
+    {
+      code: 'async () => { throw x }',
+      errors: [{type: 'ArrowFunctionExpression', message: MESSAGE}],
+    },
+    {
+      code: 'class C { async m() { throw x } }',
+      errors: [{type: 'FunctionExpression', message: MESSAGE}],
+    },
+    {
+      code: 'class C { static async m() { throw x } }',
+      errors: [{type: 'FunctionExpression', message: MESSAGE}],
     },
   ],
 });
