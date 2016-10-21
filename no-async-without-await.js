@@ -9,13 +9,17 @@ module.exports = context => {
       isAsync: node.async,
       foundThrow: false,
       foundYield: false,
+      foundAwait: false,
     };
     stack.push(frame);
   }
 
   function onFunctionExit(node) {
     const frame = stack.pop();
-    if (frame.isAsync && !(frame.foundYield || (allowThrow && frame.foundThrow))) {
+    if (
+      frame.isAsync &&
+      !(frame.foundAwait || frame.foundYield || (allowThrow && frame.foundThrow))
+    ) {
       context.report({
         node,
         message: 'Unnecessary async (only use async when await is needed).',
@@ -42,9 +46,14 @@ module.exports = context => {
     },
 
     YieldExpression(node) {
-      // await nodes are YieldExpression's
+      // await nodes are YieldExpression's with babel-eslint < 7.0.0
       const frame = stack[stack.length - 1];
       frame.foundYield = true;
+    },
+
+    AwaitExpression(node) {
+      const frame = stack[stack.length - 1];
+      frame.foundAwait = true;
     },
   };
 };
