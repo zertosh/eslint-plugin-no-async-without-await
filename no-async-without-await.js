@@ -55,6 +55,11 @@ module.exports = context => {
       const frame = stack[stack.length - 1];
       frame.foundAwait = true;
     },
+
+    ForAwaitStatement(node) {
+      const frame = stack[stack.length - 1];
+      frame.foundAwait = true;
+    },
   };
 };
 

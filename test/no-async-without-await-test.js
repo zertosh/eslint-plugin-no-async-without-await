@@ -24,6 +24,7 @@ ruleTester.run('no-async-without-await', require.resolve('../no-async-without-aw
     {code: 'async () => { await x }'},
     {code: 'class C { async m() { await x } }'},
     {code: 'class C { static async m() { await x } }'},
+    {code: 'async function foo() { for await (const x of y) {} }'},
 
     {code: 'throw x'},
 
