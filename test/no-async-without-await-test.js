@@ -3,13 +3,13 @@
 const RuleTester = require('eslint').RuleTester;
 
 RuleTester.setDefaultConfig({
-  parser: 'babel-eslint',
+  parserOptions: {ecmaVersion: 9}
 });
 
 const MESSAGE = 'Unnecessary async (only use async when await is needed).';
 
 var ruleTester = new RuleTester();
-ruleTester.run('no-async-without-await', require.resolve('../no-async-without-await'), {
+ruleTester.run('no-async-without-await', require('../no-async-without-await'), {
   valid: [
     {code: 'function f() {}'},
     {code: '(function f() {})'},
