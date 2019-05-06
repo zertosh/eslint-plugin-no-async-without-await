@@ -56,9 +56,18 @@ module.exports = context => {
       frame.foundAwait = true;
     },
 
+    // babel-eslint
     ForAwaitStatement(node) {
       const frame = stack[stack.length - 1];
       frame.foundAwait = true;
+    },
+
+    // espree
+    ForOfStatement(node) {
+      if (node.await) {
+        const frame = stack[stack.length - 1];
+        frame.foundAwait = true;
+      }
     },
   };
 };
