@@ -1,3 +1,7 @@
+# :rotating_light: DEPRECATED :rotating_light:
+
+This project is deprecated. ESLint introduced a comparable rule to this one in ESLint 3.11.0: https://eslint.org/docs/rules/require-await
+
 # eslint-plugin-no-async-without-await
 
 [![Build Status](https://travis-ci.org/zertosh/eslint-plugin-no-async-without-await.svg?branch=master)](https://travis-ci.org/zertosh/eslint-plugin-no-async-without-await)
